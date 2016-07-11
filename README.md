@@ -4,8 +4,7 @@ javascript implementation of k-means clustering algorithm for node.js
 To use with *js-ml-workshop*, replace **kmeans.js** in /js-ml-workshop/002_kmeans
 , then run ```mocha kmeans_specs.js```
 
-The digit and character recognition in the test specs should work!
-You can also use this library standalone by invoking the API methods listed below. 
+Note that *js-ml-workshop* requires node v4.0. You can also use this library standalone by invoking the API methods listed below. 
 
 ## API
 To start an instance of k-means:
