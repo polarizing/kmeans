@@ -131,6 +131,8 @@ KMeans.prototype._haveShifted = function ( beforeCentroids, afterCentroids ) {
 
 // Returns one (or n) random centroid(s) of n dimensions given vector array of n components per vector. 
 // Gets random vector from bounded box of min and max vector components
+// see https://en.wikipedia.org/wiki/K-means_clustering#/media/File:K_Means_Example_Step_2.svg
+
 KMeans.prototype._getRandomCentroids = function ( vectors, n ) {
 	var numCentroids = ((n === undefined) ? 1 : n);
 	var centroids = [];
