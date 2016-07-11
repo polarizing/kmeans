@@ -1,7 +1,7 @@
 function KMeans(options){
 	if (options == undefined){options = {};}
 	this.minClusterMove = options.minClusterMove || 0.01;
-	this.clusterAttempts = 10;
+	this.clusterAttempts = options.clusterAttempts || 10;
 	this.points = [];
 }
 
@@ -90,9 +90,8 @@ KMeans.prototype._averageLocation = function (vectors) {
 	// return [xMean, yMean];
 }
 
-// Shifts and returns all centroid locations based on the centroid's cluster points' mean location.
-KMeans.prototype._shiftCentroids = function (centroids, vectors) {
-
+// Return vectors grouped by centroid
+KMeans.prototype._groupVectors = function (centroids, vectors) {
 	var self = this;
 	var centroidGroups = [];
 
@@ -100,13 +99,21 @@ KMeans.prototype._shiftCentroids = function (centroids, vectors) {
 		centroidGroups.push([]);
 	}
 
-	var groupedVectors = vectors.reduce (function (arr, vector) {
+	return groupedVectors = vectors.reduce (function (arr, vector) {
 		var dist = centroids.map( function (centroid) { return self._distance(vector, centroid) });
 		var groupIndex = dist.indexOf(Math.min.apply(null, dist));
 		if (arr[groupIndex] === undefined) arr[groupIndex] = [];
 		arr[groupIndex].push(vector);
 		return arr;
 	}, centroidGroups)
+}
+
+// Shifts and returns all centroid locations based on the centroid's cluster points' mean location.
+KMeans.prototype._shiftCentroids = function (centroids, vectors) {
+
+	var self = this;
+	var groupedVectors = this._groupVectors(centroids, vectors);
+
 	return groupedVectors.map(function (centroidGroup) {
 		// if centroid group is empty cluster, replace with new random centroid http://stackoverflow.com/questions/11075272/k-means-empty-cluster
 		if (centroidGroup.length === 0) return self._getRandomCentroids(vectors)[0]
