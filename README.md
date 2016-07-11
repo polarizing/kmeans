@@ -1,7 +1,7 @@
 # kmeans
 javascript implementation of k-means clustering algorithm for node.js
 
-To use with [*js-ml-workshop*](https://github.com/jctillman/js-ml-workshop/blob/master/002_kmeans/kmeans_specs.js), replace **kmeans.js** in /js-ml-workshop/002_kmeans
+To use with [*js-ml-workshop*](https://github.com/jctillman/js-ml-workshop), replace **kmeans.js** in /js-ml-workshop/002_kmeans
 , then run ```mocha kmeans_specs.js```
 
 Note that *js-ml-workshop* requires node v4.0. You can also use this library standalone by invoking the API methods listed below. 
